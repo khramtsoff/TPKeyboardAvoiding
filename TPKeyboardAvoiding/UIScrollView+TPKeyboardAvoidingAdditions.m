@@ -8,6 +8,7 @@
 
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "TPKeyboardAvoidingProtocols.h"
 #import <objc/runtime.h>
 
 static const CGFloat kCalculatedContentPadding = 10;
@@ -55,6 +56,12 @@ static const int kStateKey;
         return;
     }
 
+    // check if text input handles keyboard itself
+    UIView *firstResponder = [self TPKeyboardAvoiding_findFirstResponderBeneathView:self];
+    if (![self shouldHandleKeyboardWithTextInput:firstResponder]) {
+        return;
+    }
+    
     state.keyboardRect = keyboardRect;
 
     if ( !state.keyboardVisible ) {
@@ -93,7 +100,6 @@ static const int kStateKey;
         [UIView setAnimationCurve:[[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];
         [UIView setAnimationDuration:[[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue]];
         
-        UIView *firstResponder = [self TPKeyboardAvoiding_findFirstResponderBeneathView:self];
         if ( firstResponder ) {
             
             self.contentInset = [self TPKeyboardAvoiding_contentInsetForKeyboard];
@@ -135,6 +141,12 @@ static const int kStateKey;
     }
     
     if ( !state.keyboardVisible ) {
+        return;
+    }
+    
+    // check if text input handles keyboard itself
+    UIView *firstResponder = [self TPKeyboardAvoiding_findFirstResponderBeneathView:self];
+    if (![self shouldHandleKeyboardWithTextInput:firstResponder]) {
         return;
     }
     
@@ -418,6 +430,16 @@ static const int kStateKey;
             ((UITextField*)view).returnKeyType = UIReturnKeyDone;
         }
     }
+}
+
+#pragma mark - Private
+
+- (BOOL)shouldHandleKeyboardWithTextInput:(id)textInput {
+    if ([textInput respondsToSelector:@selector(shouldTPKeyboardAvoidKeyboard)]) {
+        return [textInput shouldTPKeyboardAvoidKeyboard];
+    }
+    
+    return YES;
 }
 
 @end

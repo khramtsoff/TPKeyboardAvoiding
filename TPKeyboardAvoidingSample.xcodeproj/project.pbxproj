@@ -31,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20551A3A1E2E1E5F00155F14 /* TPKeyboardAvoidingProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingProtocols.h; sourceTree = "<group>"; };
 		3E081E481C0E63A40003DFF8 /* TPKeyboardAvoidingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TPKeyboardAvoidingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E081E4A1C0E63A40003DFF8 /* TPKeyboardAvoidingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingKit.h; sourceTree = "<group>"; };
 		3E081E4C1C0E63A40003DFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				4C9B0AE11B3CF35400090084 /* TPKeyboardAvoidingTableView.m */,
 				4C9B0AE21B3CF35400090084 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
 				4C9B0AE31B3CF35400090084 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+				20551A3A1E2E1E5F00155F14 /* TPKeyboardAvoidingProtocols.h */,
 			);
 			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
