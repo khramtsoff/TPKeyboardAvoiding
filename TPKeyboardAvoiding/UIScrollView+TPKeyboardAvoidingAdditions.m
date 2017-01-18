@@ -216,6 +216,12 @@ static const int kStateKey;
     if ( !firstResponder ) {
         return;
     }
+    
+    // check if text input handles keyboard itself
+    if (![self shouldHandleKeyboardWithTextInput:firstResponder]) {
+        return;
+    }
+    
     // Ignore any keyboard notification that occur while we scroll
     //  (seems to be an iOS 9 bug that causes jumping text in UITextField)
     state.ignoringNotifications = YES;
